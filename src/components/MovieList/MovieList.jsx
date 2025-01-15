@@ -7,6 +7,7 @@ const MovieList = ({ movies }) => {
           <Link to={`/movies/${movie.id.toString()}`}>
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              width={250}
               alt={movie.title}
             />
             {movie.title}
