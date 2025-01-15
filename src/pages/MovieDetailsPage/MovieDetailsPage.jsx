@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, Outlet, useParams } from "react-router-dom";
-import { fetchMovieById } from "../../services/api";
+import { fetchMovieById, fetchMovieCast } from "../../services/api";
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -17,6 +17,10 @@ const MovieDetailsPage = () => {
   console.log("movieId", movieId);
   console.log("Movie", movie);
 
+  if (!movie) {
+    return <p>Loading......</p>;
+  }
+
   return (
     <>
       <img
@@ -28,7 +32,6 @@ const MovieDetailsPage = () => {
         <NavLink to="cast">Cast</NavLink>
         <NavLink to="reviews">Reviews </NavLink>
       </nav>
-
       <Outlet />
     </>
   );

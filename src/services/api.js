@@ -20,3 +20,18 @@ export const fetchMovieById = async (id) => {
   const { data } = await axios.get(`${BASE_URL}/movie/${id}`, options);
   return data;
 };
+
+export const fetchMovieCast = async (movieId) => {
+  const { data } = await axios.get(
+    `${BASE_URL}/movie/${movieId}/credits`,
+    options
+  );
+  return data.cast;
+};
+export const fetchMovieReview = async (movieId) => {
+  const { data } = await axios.get(
+    `${BASE_URL}/movie/${movieId}/reviews?language=en-US&page=1`,
+    options
+  );
+  return data;
+};
