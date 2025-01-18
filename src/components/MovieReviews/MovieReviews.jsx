@@ -18,8 +18,24 @@ const MovieReviews = () => {
     };
     getData();
   }, [movieId]);
+
   console.log("review", review);
-  return <h3>Reviews</h3>;
+  return (
+    <>
+      {review.length > 0 ? (
+        <ul>
+          {review.map((item) => (
+            <li key={item.id}>
+              <h3>Author: {item.author}</h3>
+              <p>{item.content}</p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No review yet</p>
+      )}
+    </>
+  );
 };
 
 export default MovieReviews;

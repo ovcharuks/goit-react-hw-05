@@ -33,5 +33,5 @@ export const fetchMovieReview = async (movieId) => {
     `${BASE_URL}/movie/${movieId}/reviews?language=en-US&page=1`,
     options
   );
-  return data;
+  return data.results;
 };
