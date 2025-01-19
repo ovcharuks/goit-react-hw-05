@@ -11,6 +11,10 @@ const options = {
   },
 };
 
+const params = {
+  params: { include_adult: "false", language: "en-US", page: "1" },
+};
+
 export const trandMoviesFetch = async () => {
   const { data } = await axios.get(`${BASE_URL}/trending/movie/day`, options);
   return data.results;
@@ -31,6 +35,14 @@ export const fetchMovieCast = async (movieId) => {
 export const fetchMovieReview = async (movieId) => {
   const { data } = await axios.get(
     `${BASE_URL}/movie/${movieId}/reviews?language=en-US&page=1`,
+    options
+  );
+  return data.results;
+};
+
+export const searchMoviesFetch = async (query) => {
+  const { data } = await axios.get(
+    `${BASE_URL}/search/movie?query=${query}`,
     options
   );
   return data.results;
