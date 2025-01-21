@@ -21,7 +21,6 @@ const MovieCast = () => {
     }
   }, [movieId]);
 
-  console.log("cast", cast);
   if (!cast) {
     return <p>Loading......</p>;
   }

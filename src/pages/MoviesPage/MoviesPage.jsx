@@ -1,29 +1,19 @@
 import { Field, Form, Formik } from "formik";
 import { useEffect, useState } from "react";
 import { searchMoviesFetch } from "../../services/api";
-import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
+import MovieList from "../../components/MovieList/MovieList";
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState("");
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const onSubmit = (values) => {
-    console.log("onSubmit Values", values.query);
-    handleChangeQuery(values.query);
-  };
-
-  const handleChangeQuery = (newQuery) => {
-    setQuery(newQuery);
-  };
-
-  const filterMovies = movies.filter((movie) => {
-    movie.title.toLowerCase().includes(query.toLowerCase());
-  });
-  const initialValues = {
-    query: "",
-  };
+  const query = searchParams.get("query");
 
   useEffect(() => {
+    if (!query) {
+      return;
+    }
     const getData = async () => {
       const data = await searchMoviesFetch(query);
       setMovies(data);
@@ -31,7 +21,19 @@ const MoviesPage = () => {
     getData();
   }, [query]);
 
-  console.log("MoviesPage -> movies:", movies);
+  const onSubmit = ({ query }) => {
+    if (!query) {
+      alert("enter movie name");
+
+      return;
+    }
+    setSearchParams({ query });
+  };
+
+  const initialValues = {
+    query: "",
+  };
+
   return (
     <>
       <h2>Movies page</h2>
@@ -41,21 +43,7 @@ const MoviesPage = () => {
           <button type="submit">Search movie</button>
         </Form>
       </Formik>
-
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            <Link to={`/movies/${movie.id.toString()}`}>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                width={250}
-                alt={movie.title}
-              />
-              {movie.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <MovieList movies={movies} />
     </>
   );
 };

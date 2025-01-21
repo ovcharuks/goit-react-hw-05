@@ -5,7 +5,6 @@ import MovieList from "../../components/MovieList/MovieList";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
-  console.log("movies", movies);
   useEffect(() => {
     const getData = async () => {
       const data = await trandMoviesFetch();

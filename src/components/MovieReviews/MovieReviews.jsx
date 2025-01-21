@@ -19,7 +19,6 @@ const MovieReviews = () => {
     getData();
   }, [movieId]);
 
-  console.log("review", review);
   return (
     <>
       {review.length > 0 ? (
