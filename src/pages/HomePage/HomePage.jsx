@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import { trandMoviesFetch } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
 import styles from "./HomePage.module.css";
