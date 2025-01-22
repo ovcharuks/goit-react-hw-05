@@ -1,0 +1,15 @@
+.searchContainer {
+    display: flex;
+    gap: 20px;
+    align-items: last baseline;
+}
+
+.input {
+    width: 250px;
+    height: max-content;
+
+}
+
+button {
+    background-color: aquamarine;
+}

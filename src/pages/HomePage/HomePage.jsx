@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { trandMoviesFetch } from "../../services/api";
 import MovieList from "../../components/MovieList/MovieList";
+import styles from "./HomePage.module.css";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
@@ -15,8 +16,7 @@ const HomePage = () => {
 
   return (
     <>
-      <h1>Home page</h1>
-      <h2>Tranding today</h2>
+      <h2 className={styles.header}>Tranding today</h2>
       <MovieList movies={movies} />
     </>
   );

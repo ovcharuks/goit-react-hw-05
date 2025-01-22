@@ -1,3 +1,4 @@
+import styles from "./MovieDetailsPage.module.css";
 import { useEffect, useRef, useState } from "react";
 import {
   Link,
@@ -33,11 +34,13 @@ const MovieDetailsPage = () => {
     <>
       <Link to={goBackLink.current}>Go back</Link>
       <img
+        className={styles.movieImage}
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={movie.title}
       />
+
       <p>{movie.release_date}</p>
-      <nav>
+      <nav className={styles.nav}>
         <NavLink to="cast">Cast</NavLink>
         <NavLink to="reviews">Reviews </NavLink>
       </nav>
